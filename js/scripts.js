@@ -65,6 +65,7 @@ console.log('postsContainer', postsContainer , typeof postsContainer );
 
 
 posts.forEach((post)=>{
+
     postsContainer.innerHTML += `
     <div class="post">
             <div class="post__header">
@@ -99,3 +100,22 @@ posts.forEach((post)=>{
     `
     
 })
+
+
+const likeButton = document.querySelectorAll('.like-button');
+
+for (let i = 0; i < likeButton.length; i++) {
+   likeButton[i].addEventListener('click', function () {
+    this.classList.toggle("like-button--liked");
+
+    if(!(this.classList.contains("like-button--liked"))){
+        let allLike = parseInt(document.getElementById("like-counter-"+(i+1)).innerHTML);
+        document.getElementById("like-counter-"+(i+1)).innerHTML=(allLike - 1); 
+    }
+    else{
+        let allLike =parseInt(document.getElementById("like-counter-"+(i+1)).innerHTML);
+        document.getElementById("like-counter-"+(i+1)).innerHTML=(allLike + 1); 
+    }
+
+   })  
+}
